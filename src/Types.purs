@@ -1,7 +1,5 @@
 module Types where
 
-import Prelude
-
 -- | `Union a b c` means a ∪ b = c
 -- | `SubRow a b` means a is a subrow of b
 -- | or: there exists an x for which `Union a x b` holds
