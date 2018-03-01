@@ -25,9 +25,9 @@ foreign import unsafeDelete :: forall r1 r2. String -> SubRecord r1 -> SubRecord
 foreign import unsafeRename :: forall r1 r2. String -> String -> SubRecord r1 -> SubRecord r2
 foreign import unsafeMerge :: forall r1 r2 r3. SubRecord r1 -> SubRecord r2 -> SubRecord r3
 
--- | A `Builder` can be used to `build` a record by incrementally adding
+-- | A `Builder` can be used to `build` a subrecord by incrementally adding
 -- | fields in-place, instead of using `insert` and repeatedly generating new
--- | immutable records which need to be garbage collected.
+-- | immutable subrecords which need to be garbage collected.
 -- |
 -- | The `Category` instance for `Builder` can be used to compose builders.
 -- |
@@ -45,7 +45,8 @@ build (Builder b) r1 = b (copyRecord r1)
 derive newtype instance semigroupoidBuilder :: Semigroupoid Builder
 derive newtype instance categoryBuilder :: Category Builder
 
--- | Build by inserting a new field.
+-- | Build by inserting a new field if the value is `Just x`.
+-- | The subrecord is unchanged if the value is `Nothing`.
 insert
   :: forall l a r1 r2
    . RowCons l a r1 r2
