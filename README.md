@@ -1,1 +1,1 @@
-"# purescript-subrecord" 
+# purescript-subrecord
