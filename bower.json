@@ -1,5 +1,12 @@
 {
   "name": "purescript-subrecord",
+  "homepage": "https://github.com/rubenpieters/purescript-subrecord",
+  "description": "SubRecord for PureScript",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rubenpieters/purescript-subrecord.git"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
