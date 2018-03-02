@@ -3,7 +3,9 @@ module Test.Data.SubRecord where
 import Prelude
 import Types
 
+import Data.Maybe (Maybe(..))
 import Data.SubRecord
+import Data.Symbol
 
 import Control.Monad.Eff
 
@@ -17,9 +19,15 @@ testMk b = if b
               then mkSubRecord { x: 1 }
               else mkSubRecord {}
 
-testWithDef :: { x :: Int }
-testWithDef = withDefaults { x: 99 } (testMk false)
+testSubRecord :: SubRecord ( x :: Int, y :: String )
+testSubRecord = mkSubRecord { x: 42 }
+
+testWithDef :: { x :: Int, y :: String }
+testWithDef = withDefaults { x: 99, y: "default" } testSubRecord
 
 main :: Eff _ Unit
 main = do
-  assert $ testWithDef.x == 99
+  assert $ testWithDef.x == 42
+  assert $ testWithDef.y == "default"
+  assert $ get (SProxy :: SProxy "x") testSubRecord == Just 42
+  assert $ get (SProxy :: SProxy "y") testSubRecord == Nothing
