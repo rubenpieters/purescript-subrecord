@@ -10,7 +10,7 @@ module Data.SubRecord.Builder
 
 import Prelude
 
-import Types (SubRecord)
+import Data.SubRecord.Internal (SubRecord)
 
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol, SProxy, reflectSymbol)

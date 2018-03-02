@@ -1,7 +1,6 @@
 module Test.Data.SubRecord where
 
 import Prelude
-import Types
 
 import Data.Maybe (Maybe(..))
 import Data.SubRecord

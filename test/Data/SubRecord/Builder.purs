@@ -1,15 +1,16 @@
 module Test.Data.SubRecord.Builder where
 
+import Prelude
+
 import Control.Monad.Eff
 import Data.Maybe
 import Data.SubRecord
 import Data.Symbol
-import Prelude
-import Test.Assert
-import Types
 
-import Data.SubRecord.Builder (build, modify)
+import Data.SubRecord
 import Data.SubRecord.Builder as SubRecord
+
+import Test.Assert
 
 x :: SProxy "x"
 x = SProxy

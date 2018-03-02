@@ -2,6 +2,8 @@ module Test.Main where
 
 import Prelude
 
+import Data.SubRecord
+
 import Control.Monad.Eff
 import Control.Monad.Eff.Console (log)
 

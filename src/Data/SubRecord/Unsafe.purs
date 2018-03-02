@@ -9,7 +9,7 @@ module Data.SubRecord.Unsafe
   , unsafeHas
   ) where
 
-import Types
+import Data.SubRecord.Internal (SubRecord)
 
 import Data.Maybe (Maybe(..))
 import Data.Function.Uncurried (Fn2, Fn3, Fn4, runFn2, runFn3, runFn4)

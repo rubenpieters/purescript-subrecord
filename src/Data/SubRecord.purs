@@ -1,14 +1,14 @@
 module Data.SubRecord (module Data.SubRecord, module Exported) where
 
-import Types (class SubRow, SubRecord) as Exported
+import Data.SubRecord.Internal (SubRecord) as Exported
 
+import Data.SubRecord.Internal
 import Data.Maybe (Maybe(..))
 import Data.Function.Uncurried (runFn2, runFn3)
 import Data.Record.Builder as Record
 import Data.SubRecord.Unsafe
 import Data.Symbol
 
-import Types (SubRecord)
 import Unsafe.Coerce (unsafeCoerce)
 
 mkSubRecord :: forall a x r.
