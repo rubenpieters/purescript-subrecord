@@ -23,7 +23,7 @@ testMk b = if b
 testWithDef :: { x :: Int }
 testWithDef = withDefaults { x: 99 } (testMk false)
 
-testInsert :: SubRecord ( x :: Int, y :: String)
+testInsert :: SubRecord ( x :: Int, y :: String )
 testInsert =
   SubRecord.build
     (SubRecord.insert (SProxy :: SProxy "x") (Just 42) >>>

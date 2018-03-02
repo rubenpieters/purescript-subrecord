@@ -2,22 +2,22 @@ module Data.SubRecord (module Data.SubRecord, module Exported) where
 
 import Types (class SubRow, SubRecord) as Exported
 
-import Types (class SubRow, SubRecord)
+import Types (SubRecord)
 
 import Data.Record.Builder as Record
 
 import Unsafe.Coerce (unsafeCoerce)
 
-mkSubRecord :: forall a r.
-               SubRow a r =>
+mkSubRecord :: forall a x r.
+               Union a x r =>
                Record a -> SubRecord r
 mkSubRecord = unsafeCoerce
 
 foreign import passNullContext :: forall a b. a -> b
 
-unSubRecord :: forall r.
+unSubRecord :: forall x r.
                (forall a.
-                Union a r r =>
+                Union a x r =>
                 Record a -> Record r
                ) ->
                SubRecord r -> Record r
