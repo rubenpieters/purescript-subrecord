@@ -3,8 +3,7 @@ module Data.SubRecord (module Data.SubRecord, module Exported) where
 import Data.SubRecord.Internal (SubRecord) as Exported
 
 import Data.SubRecord.Internal
-import Data.Maybe (Maybe(..))
-import Data.Function.Uncurried (runFn2, runFn3)
+import Data.Maybe (Maybe)
 import Data.Record.Builder as Record
 import Data.SubRecord.Unsafe
 import Data.Symbol
