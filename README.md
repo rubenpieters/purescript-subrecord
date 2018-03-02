@@ -1,3 +1,4 @@
+[![Latest release](http://img.shields.io/bower/v/purescript-subrecord.svg)](https://github.com/rubenpieters/purescript-subrecord/releases)
 [![Build Status](https://travis-ci.org/rubenpieters/purescript-subrecord.svg?branch=master)](https://travis-ci.org/rubenpieters/purescript-subrecord)
 
 # purescript-subrecord
@@ -6,7 +7,9 @@ The `SubRecord` type, for encoding subrecords.
 
 # Installation
 
-Library is currently WIP, release is planned soon.
+```
+bower install purescript-subrecord
+```
 
 # Overview
 
