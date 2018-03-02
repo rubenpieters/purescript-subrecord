@@ -22,7 +22,10 @@ exports.unsafeInsert = function(l) {
 exports.unsafeModify = function(l) {
   return function (f) {
     return function(rec) {
-      rec[l] = f(rec[l]);
+      // only mutate if `rec` has property `l`
+      if ({}.hasOwnProperty.call(rec, l)) {
+        rec[l] = f(rec[l]);
+      }
       return rec;
     };
   };
@@ -38,8 +41,11 @@ exports.unsafeDelete = function(l) {
 exports.unsafeRename = function(l1) {
   return function (l2) {
     return function (rec) {
-      rec[l2] = rec[l1];
-      delete rec[l1];
+      // only mutate if `rec` has property `l1`
+      if ({}.hasOwnProperty.call(rec, l1)) {
+        rec[l2] = rec[l1];
+        delete rec[l1];
+      }
       return rec;
     };
   };

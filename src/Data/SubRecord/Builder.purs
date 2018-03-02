@@ -2,10 +2,10 @@ module Data.SubRecord.Builder
   ( Builder
   , build
   , insert
---  , modify
---  , delete
---  , rename
---  , merge
+  , modify
+  , delete
+  , rename
+  , merge
   ) where
 
 import Prelude
@@ -57,3 +57,45 @@ insert
   -> Builder (SubRecord r1) (SubRecord r2)
 insert l (Just a) = Builder \r1 -> unsafeInsert (reflectSymbol l) a r1
 insert l Nothing = Builder \r1 -> unsafeCoerce r1
+
+-- | Build by modifying a potentially existing field.
+modify
+  :: forall l a b r r1 r2
+   . RowCons l a r r1
+  => RowCons l b r r2
+  => IsSymbol l
+  => SProxy l
+  -> (a -> b)
+  -> Builder (SubRecord r1) (SubRecord r2)
+modify l f = Builder \r1 -> unsafeModify (reflectSymbol l) f r1
+
+-- | Build by deleting a potentially existing field.
+delete
+  :: forall l a r1 r2
+   . IsSymbol l
+   => RowLacks l r1
+   => RowCons l a r1 r2
+   => SProxy l
+   -> Builder (SubRecord r2) (SubRecord r1)
+delete l = Builder \r2 -> unsafeDelete (reflectSymbol l) r2
+
+-- | Build by renaming a potentially existing field.
+rename :: forall l1 l2 a r1 r2 r3
+   . IsSymbol l1
+  => IsSymbol l2
+  => RowCons l1 a r2 r1
+  => RowLacks l1 r2
+  => RowCons l2 a r2 r3
+  => RowLacks l2 r2
+  => SProxy l1
+  -> SProxy l2
+  -> Builder (SubRecord r1) (SubRecord r3)
+rename l1 l2 = Builder \r1 -> unsafeRename (reflectSymbol l1) (reflectSymbol l2) r1
+
+-- | Build by merging fields from another subrecord.
+merge
+  :: forall r1 r2 r3
+   . Union r1 r2 r3
+  => SubRecord r2
+  -> Builder (SubRecord r1) (SubRecord r3)
+merge r2 = Builder \r1 -> unsafeMerge r1 r2
